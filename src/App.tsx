@@ -1,7 +1,14 @@
+import Appbar from './components/Appbar/AppBar';
+
 const App = () => {
     return (
         <>
-            <h1>Privet</h1>
+          <header>
+            <Appbar />
+          </header>
+            <main>
+              main Content
+            </main>
         </>
     );
 };
