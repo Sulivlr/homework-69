@@ -1,14 +1,16 @@
 import Appbar from './components/Appbar/AppBar';
+import {Route, Routes} from 'react-router-dom';
+import MovieForm from './components/MovieForm/MovieForm';
+import Layout from './components/Layout/Layout';
 
 const App = () => {
     return (
         <>
-          <header>
-            <Appbar />
-          </header>
-            <main>
-              main Content
-            </main>
+            <Layout>
+              <Routes>
+                <Route path="/:movieName" element={<MovieForm/> } />
+              </Routes>
+            </Layout>
         </>
     );
 };
