@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 const MovieForm: React.FC = () => {
   const [query, setQuery] = useState('');
   const changeMovie = (event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value);
-  console.log(query);
-
 
 
   return (
