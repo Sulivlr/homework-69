@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {ApiMovies, Movie} from '../types';
 import axiosApi from '../axiosApi';
 
-export const fetchMovie = createAsyncThunk<Movie[], string>(
+export const fetchMovie = createAsyncThunk<Movie[]>(
   'movie/fetchMovie',
   async (query) => {
     try {
