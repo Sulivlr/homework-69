@@ -25,7 +25,7 @@ const MovieForm: React.FC = () => {
                onChange={onChange}
         />
         <button
-          disabled={selectMovieIsSearching}
+          disabled={isSearching}
           type="submit"
           className="btn btn-primary"
         >

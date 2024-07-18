@@ -1,6 +1,8 @@
 
 import Movies from './components/Movies/Movies';
 import Appbar from './components/Appbar/AppBar';
+import {Route, Routes} from 'react-router-dom';
+import MovieForm from './components/MovieForm/MovieForm';
 
 
 const App = () => {
@@ -10,7 +12,10 @@ const App = () => {
               <Appbar />
             </header>
           <main>
-            <Movies />
+            <Routes >
+              <Route path="/" element={<MovieForm />} />
+              <Route path="/shows/:id" element={<Movies />}/>
+            </Routes>
           </main>
         </>
     );

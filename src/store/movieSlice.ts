@@ -11,9 +11,8 @@ export interface MovieState {
 const initialState: MovieState = {
   movies: [],
   fetchLoading: false,
-  isSearching: false,
+  isSearching: false
 };
-
 const movieSlice = createSlice<MovieState>({
   name: 'movie',
   initialState,
