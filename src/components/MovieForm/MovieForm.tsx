@@ -1,12 +1,26 @@
-import React from 'react';
-import {useParams} from 'react-router-dom';
+import React, {useState} from 'react';
 
-const MovieForm = () => {
-  const {movieName} = useParams();
+const MovieForm: React.FC = () => {
+  const [query, setQuery] = useState('');
+  const changeMovie = (event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value);
+  console.log(query);
+
+
 
   return (
-    <div>
-      Movie {movieName}
+    <div className="container-fluid mt-2">
+        <div className="input-group input-group-lg">
+          <input type="text"
+                 className="form-control"
+                 value={query}
+                 onChange={changeMovie}
+                 aria-label="Sizing example input"
+                 aria-describedby="inputGroup-sizing-lg"
+          />
+          <div className="position-absolute">
+
+          </div>
+        </div>
     </div>
   );
 };

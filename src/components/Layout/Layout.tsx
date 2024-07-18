@@ -1,5 +1,5 @@
 import React from 'react';
-import Appbar from '../Appbar/AppBar'
+import Appbar from '../Appbar/AppBar';
 
 const Layout: React.FC<React.PropsWithChildren> = ({children}) => {
   return (

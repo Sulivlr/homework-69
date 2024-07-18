@@ -1,4 +1,4 @@
-import {ApiMovie, Movie} from '../types';
+import {Movie} from '../types';
 import {createSlice} from '@reduxjs/toolkit';
 
 interface MovieState {
@@ -9,7 +9,7 @@ interface MovieState {
 const initialState: MovieState = {
   movies: [],
   fetchLoading: false,
-}
+};
 
 const movieSlice = createSlice<MovieState>({
   name: 'movie',
