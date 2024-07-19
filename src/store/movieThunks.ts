@@ -1,18 +1,24 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {ApiMovies, Movie} from '../types';
+import {ApiMovie, ApiMovies, Movie} from '../types';
 import axiosApi from '../axiosApi';
+import axios from 'axios';
 
 
-export const fetchMovie = createAsyncThunk<Movie[]>(
+export const fetchMovie = createAsyncThunk<Movie[], string>(
   'movie/fetchMovie',
-  async (id: string) => {
-      const {data: apiMovies} = await axiosApi.get<ApiMovies | null>(`https://api.tvmaze.com/shows/${id}`);
+  async (name: string) => {
+      const {data: apiMovies} = await axiosApi.get<ApiMovies | null>(`https://api.tvmaze.com/search/shows?q=${name}`);
       if (!apiMovies) {
         return [];
       }
-      return Object.keys(apiMovies).map((id) => ({
-        id,
-        ...apiMovies[id],
-      }));
+      return apiMovies;
   },
+);
+
+export const fetchMovieById = createAsyncThunk<ApiMovie, number>(
+  'movie/fetchMovieById',
+  async (id: number) => {
+    const { data: movie } = await axios.get<ApiMovie | null>(`https://api.tvmaze.com/shows/${id}`);
+    return movie;
+  }
 );

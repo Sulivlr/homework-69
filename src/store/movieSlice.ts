@@ -1,19 +1,21 @@
-import {Movie} from '../types';
+import {ApiMovie, Movie} from '../types';
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchMovie} from './movieThunks';
+import {fetchMovie, fetchMovieById} from './movieThunks';
 
 export interface MovieState {
   movies: Movie[];
   fetchLoading: boolean;
   isSearching: boolean;
+  selectedMovie: ApiMovie | null;
 }
 
 const initialState: MovieState = {
   movies: [],
   fetchLoading: false,
-  isSearching: false
+  isSearching: false,
+  selectedMovie: null,
 };
-const movieSlice = createSlice({
+const movieSlice = createSlice<MovieState>({
   name: 'movie',
   initialState,
   reducers: {},
@@ -25,18 +27,29 @@ const movieSlice = createSlice({
       state.fetchLoading = false;
     }).addCase(fetchMovie.rejected, (state) => {
       state.fetchLoading = false;
-    });
+    }).addCase(fetchMovieById.pending, (state) => {
+      state.fetchLoading = true;
+    }).addCase(fetchMovieById.fulfilled, (state, { payload: movie }) => {
+        state.selectedMovie = movie;
+        state.fetchLoading = false;
+      }).addCase(fetchMovieById.rejected, (state) => {
+        state.fetchLoading = false;
+      });
   },
   selectors: {
     selectMovieIsSearching: (state) => state.isSearching,
     selectMovieIsFetching: (state) => state.fetchLoading,
     selectMovieMovies: (state) => state.movies,
+    selectMovieById: (state) => state.selectedMovie,
   }
 });
+
+
 
 export const movieReducer = movieSlice.reducer;
 export const {
   selectMovieIsFetching,
   selectMovieIsSearching,
-  selectMovieMovies
+  selectMovieMovies,
+  selectMovieById,
 } = movieSlice.selectors;

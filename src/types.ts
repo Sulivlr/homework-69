@@ -1,13 +1,14 @@
-export interface Movie extends ApiMovie {
-  id: string;
+export interface Movie {
+  show: ApiMovie;
 }
 
 export interface ApiMovie {
-  image: string;
-  title: string;
-  description: string;
+  image: {
+    medium: string;
+    original: string;
+  };
+  summary: string;
+  name: string
+  id: number;
 }
 
-export interface ApiMovies {
-  [id: string]: ApiMovie;
-}
