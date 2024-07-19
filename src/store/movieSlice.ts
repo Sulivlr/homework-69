@@ -13,7 +13,7 @@ const initialState: MovieState = {
   fetchLoading: false,
   isSearching: false
 };
-const movieSlice = createSlice<MovieState>({
+const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {},
